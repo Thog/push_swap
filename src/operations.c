@@ -6,7 +6,7 @@
 /*   By: tguillem <tguillem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/11 14:52:23 by tguillem          #+#    #+#             */
-/*   Updated: 2016/02/11 15:07:17 by tguillem         ###   ########.fr       */
+/*   Updated: 2016/02/11 17:30:32 by tguillem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,8 @@ void		pushback(t_val **lst, int value)
 {
 	t_val *new;
 
-	if(!(new = create_val()))
+	if (!(new = create_val()))
 		return ;
-
 	new->value = value;
 	new->prev = new;
 	new->next = new;

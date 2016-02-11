@@ -6,7 +6,7 @@
 /*   By: tguillem <tguillem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/11 15:08:33 by tguillem          #+#    #+#             */
-/*   Updated: 2016/02/11 16:14:08 by tguillem         ###   ########.fr       */
+/*   Updated: 2016/02/11 17:29:58 by tguillem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void				clear_val(t_val **stack_a, t_val **stack_b)
 	}
 }
 
-t_val				*create_val()
+t_val				*create_val(void)
 {
 	t_val		*result;
 

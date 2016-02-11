@@ -6,7 +6,7 @@
 /*   By: tguillem <tguillem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/11 14:23:34 by tguillem          #+#    #+#             */
-/*   Updated: 2016/02/11 15:47:32 by tguillem         ###   ########.fr       */
+/*   Updated: 2016/02/11 17:35:24 by tguillem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ static int			compute_min(t_val *lst)
 {
 	t_val	*tmp;
 	int		result;
+
 	if (!lst)
 		return (-666);
 	result = lst->value;
@@ -29,12 +30,12 @@ static int			compute_min(t_val *lst)
 	return (result);
 }
 
-static int			isSorted(t_val *lst)
+static int			is_sorted(t_val *lst)
 {
 	int		flag;
 	int		prev;
 	t_val	*tmp;
-	
+
 	if (!lst)
 		return (0);
 	flag = 0;
@@ -61,7 +62,7 @@ void			push_swap(t_val *stack_a, t_val *stack_b)
 
 	min = compute_min(stack_a);
 	need_space = 0;
-	while (stack_a && !isSorted(stack_a))
+	while (stack_a && !is_sorted(stack_a))
 	{
 		if (need_space)
 			write(1, " ", 1);
