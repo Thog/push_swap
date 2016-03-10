@@ -1,68 +1,104 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   operations.c                                       :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: tguillem <tguillem@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/02/11 14:52:23 by tguillem          #+#    #+#             */
-/*   Updated: 2016/02/11 17:30:32 by tguillem         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "push_swap.h"
 
-void		pushback(t_val **lst, int value)
+void	push_a(t_stack *stack)
 {
-	t_val *new;
+	int	i;
+	int	j;
 
-	if (!(new = create_val()))
-		return ;
-	new->value = value;
-	new->prev = new;
-	new->next = new;
-	if (*lst)
+	i = stack->b_size - 1;
+	j = 0;
+	while (j < stack->b_size)
 	{
-		new->next = *lst;
-		new->prev = (*lst)->prev;
-		(*lst)->prev->next = new;
-		(*lst)->prev = new;
+		stack->a[j] = stack->b[i];
+		i--;
+		j++;
+		ft_putstr("pa ");
 	}
-	else
-		*lst = new;
+	stack->count++;
 }
 
-void		pushfront(t_val **lst, int value)
+void	push_b(t_stack *stack)
 {
-	pushback(lst, value);
-	*lst = (*lst)->prev;
+	int	i;
+	int	j;
+
+	i = 0;
+	while (stack->b[i] != stack->b[stack->count])
+	{
+		j = stack->b[i];
+		stack->b[i + 1] = j;
+		i++;
+	}
+	stack->b[0] = stack->a[stack->a_size - 1];
+	stack->a_size--;
+	stack->count++;
+	ft_putstr("pb ");
 }
 
-void		pop(t_val **lst)
+void	swap_sa(t_stack *stack)
 {
-	t_val	*tmp;
+	int	tmp;
 
-	if (!*lst)
-		return ;
-	if (*lst == (*lst)->next)
+	tmp = stack->a[stack->a_size - 1];
+	if (tmp)
 	{
-		free(*lst);
-		*lst = NULL;
+		stack->a[stack->a_size - 1] = stack->a[stack->a_size - 2];
+		stack->a[stack->a_size - 2] = tmp;
 	}
-	else
+	stack->count++;
+	ft_putstr("sa ");
+}
+
+void	swap_ra(t_stack *stack, int pos)
+{
+	int	*backup;
+	int	i;
+	int	j;
+
+	backup = NULL;
+	j = stack->top_a;
+	backup = stack_cpy(backup, stack);
+	i = ((stack->a_size - 1) - pos);
+	while (j < stack->a_size && !i)
 	{
-		tmp = *lst;
-		(*lst)->prev->next = (*lst)->next;
-		(*lst)->next->prev = (*lst)->prev;
-		*lst = (*lst)->next;
-		free(tmp);
+		if ((j + i) >= stack->a_size)
+			stack->a[(j + i) - stack->a_size] = backup[j];
+		else
+			stack->a[j + i ] = backup[j];
+		j++;
+	}
+	j = 0;
+	while (j < i)
+	{
+		stack->count++;
+		ft_putstr("ra ");
+		j++;
 	}
 }
 
-void		shift(t_val **lst)
+void	swap_rra(t_stack *stack, int pos)
 {
-	write(1, "ra", 2);
-	if (!*lst)
-		return ;
-	*lst = (*lst)->next;
+	int	*backup;
+	int	i;
+	int	j;
+
+	backup = NULL;
+	j = stack->top_a;
+	backup = stack_cpy(backup, stack);
+	i = ((stack->a_size - 1) - pos);
+	while (j < stack->a_size && !i)
+	{
+		if ((j - i) >= 0)
+			stack->a[(j - i) - stack->a_size] = backup[j];
+		else
+			stack->a[j - i ] = backup[j];
+		j++;
+	}
+	j = 0;
+	while (j < i)
+	{
+		stack->count++;
+		ft_putstr("rra ");
+		j++;
+	}
 }

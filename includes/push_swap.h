@@ -15,20 +15,33 @@
 
 # include <unistd.h>
 # include <stdlib.h>
+# include "libft.h"
 
-typedef struct		s_val
+typedef	struct	s_stack
 {
-	int				value;
-	struct s_val	*prev;
-	struct s_val	*next;
-}					t_val;
+	int			*a;
+	int			*b;
+	int			a_size;
+	int			b_size;
+	int			top_a;
+	int			top_b;
+	int			arg;
+	int			count;
+}				t_stack;
 
-void				pushback(t_val **lst, int value);
-void				pushfront(t_val **lst, int value);
-void				pop(t_val **lst);
-void				shift(t_val **lst);
-t_val				*create_val();
-void				destroy_val(t_val *lst);
-void				clear_val(t_val **stack_a, t_val **stack_b);
-void				push_swap(t_val *stack_a, t_val *stack_b);
+t_stack		*create_stack(int ac, char **av);
+void		resolve_pushswap(t_stack *stack);
+int			get_max(t_stack *stack);
+int			get_min(t_stack *stack);
+int			find_best_swap(t_stack *stack);
+void		swap_sa(t_stack *stack);
+void		swap_ra(t_stack *stack, int value);
+void		swap_rra(t_stack *stack, int value);
+void		push_a(t_stack *stack);
+void		push_b(t_stack *stack);
+void		fast_swap_rra(t_stack *stack);
+void		fast_swap_ssr(t_stack *stack);
+void		display_resolved(t_stack *stack);
+int			*stack_cpy(int *cpy, t_stack *stack);
+int			is_stack_valid(t_stack *stack);
 #endif

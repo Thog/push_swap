@@ -12,44 +12,38 @@
 
 #include "push_swap.h"
 
-static int		ft_atoi(const char *nptr)
+static int		check_args_validity(int ac, char **av)
 {
 	int		i;
-	int		n;
-	int		sign;
+	int		j;
 
-	i = 0;
-	n = 0;
-	sign = 1;
-	while ((nptr[i] == ' ') || (nptr[i] == '\t') || (nptr[i] == '\n')
-			|| (nptr[i] == '\v') || (nptr[i] == '\f') || (nptr[i] == '\r'))
-		i++;
-	sign = (nptr[i] == '-') ? -1 : 1;
-	i = (nptr[i] == '-' || nptr[i] == '+') ? i + 1 : i;
-	while (nptr[i] && nptr[i] >= '0' && nptr[i] <= '9')
+	i = 1;
+	while (ac > i)
 	{
-		n = n * 10 + (nptr[i] - '0');
+		j = 0;
+		while (av[i][j])
+		{
+			if (ft_isdigit(av[i][j]) || (!j && av[i][j] == '-' && \
+						ft_isdigit(av[i][j + 1])))
+				j++;
+			else
+			{
+				ft_putendl("Invalid arguments. Please check them and try again.");
+				return (0);
+			}
+		}
 		i++;
 	}
-	return (n * sign);
+	return (1);
 }
 
 int				main(int ac, char **av)
 {
-	int		i;
-	t_val	*stack_a;
-	t_val	*stack_b;
+	t_stack		*stack;
 
 	if (ac < 3)
 		write(1, "\n", 1);
-	else
-	{
-		stack_a = create_val();
-		stack_b = create_val();
-		i = 0;
-		while (++i < ac)
-			pushback(&stack_a, ft_atoi(av[i]));
-		push_swap(stack_a, stack_b);
-	}
+	else if (check_args_validity(ac, av) && (stack = create_stack(ac, av)))
+		resolve_pushswap(stack);
 	return (0);
 }
