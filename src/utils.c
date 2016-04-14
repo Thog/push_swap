@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tguillem <tguillem@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/04/14 15:41:05 by tguillem          #+#    #+#             */
+/*   Updated: 2016/04/14 15:48:34 by tguillem         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 static int	fill_stack(int ac, int *stack, char **av)
@@ -11,7 +23,7 @@ static int	fill_stack(int ac, int *stack, char **av)
 		stack[i] = ft_atoi(av[i + 1]);
 		i++;
 	}
-	i= 0;
+	i = 0;
 	while (i < ac)
 	{
 		j = i + 1;
@@ -29,12 +41,11 @@ static int	fill_stack(int ac, int *stack, char **av)
 	return (1);
 }
 
-int		is_stack_valid(t_stack *stack)
+int			is_stack_valid(t_stack *stack)
 {
 	int	i;
 
 	i = 0;
-
 	while (i < stack->a_size - 1)
 	{
 		if (stack->a[i] < stack->a[i + 1])
@@ -47,11 +58,16 @@ int		is_stack_valid(t_stack *stack)
 
 t_stack		*create_stack(int ac, char **av)
 {
-	int		stack_a[ac - 1];
-	int		stack_b[ac - 1];
+	int		*stack_a;
+	int		*stack_b;
 	t_stack	*rest;
 
-	if (!(rest = (t_stack*)malloc(sizeof(t_stack))) || !fill_stack(ac, stack_a, av))
+	stack_b = NULL;
+	stack_a = NULL;
+	if (!(stack_a = (int*)ft_memalloc(sizeof(int) * (ac - 1))) ||
+			!(stack_b = (int*)ft_memalloc(sizeof(int) * (ac - 1))) ||
+			!(rest = (t_stack*)ft_memalloc(sizeof(t_stack)))
+			|| !fill_stack(ac, stack_a, av))
 		return (NULL);
 	rest->a = stack_a;
 	rest->b = stack_b;

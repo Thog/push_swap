@@ -6,7 +6,7 @@
 /*   By: tguillem <tguillem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/11 14:01:50 by tguillem          #+#    #+#             */
-/*   Updated: 2016/02/11 17:31:16 by tguillem         ###   ########.fr       */
+/*   Updated: 2016/04/14 15:42:13 by tguillem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ static int		check_args_validity(int ac, char **av)
 				j++;
 			else
 			{
-				ft_putendl("Invalid arguments. Please check them and try again.");
+				ft_putstr(
+					"Invalid arguments. Please check them and try again.");
 				return (0);
 			}
 		}
@@ -41,9 +42,13 @@ int				main(int ac, char **av)
 {
 	t_stack		*stack;
 
-	if (ac < 3)
-		write(1, "\n", 1);
-	else if (check_args_validity(ac, av) && (stack = create_stack(ac, av)))
+	if (ac >= 3 && check_args_validity(ac, av) &&
+		(stack = create_stack(ac, av)))
+	{
 		resolve_pushswap(stack);
+		write(1, "\n", 1);
+		display_resolved(stack);
+	}
+	write(1, "\n", 1);
 	return (0);
 }

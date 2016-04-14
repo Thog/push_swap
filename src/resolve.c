@@ -1,5 +1,16 @@
-#include "push_swap.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   resolve.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tguillem <tguillem@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/04/14 15:40:45 by tguillem          #+#    #+#             */
+/*   Updated: 2016/04/14 15:43:46 by tguillem         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
+#include "push_swap.h"
 
 static int	fast_resolve(t_stack *stack)
 {
@@ -41,7 +52,7 @@ static void	iterative_resolve(t_stack *stack)
 		if (((stack->a_size / 2) - 1) > get_max(stack))
 			swap_type = 1;
 		if (stack->a[stack->a_size - 1] < stack->a[stack->a_size - 2] \
-				&& stack->a_size > 1)
+			&& stack->a_size > 1)
 			swap_sa(stack);
 		if (!swap_type)
 			swap_ra(stack, get_max(stack));

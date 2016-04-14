@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   fast_swap.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tguillem <tguillem@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/04/14 15:40:26 by tguillem          #+#    #+#             */
+/*   Updated: 2016/04/14 15:46:30 by tguillem         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 void	fast_swap_rra(t_stack *stack)
@@ -18,10 +30,10 @@ void	fast_swap_rra(t_stack *stack)
 	}
 }
 
-void fast_swap_ssr(t_stack *stack)
+void	fast_swap_ssr(t_stack *stack)
 {
 	if (!is_stack_valid(stack))
-		return;
+		return ;
 	if (stack->a[0] > stack->a[1] && stack->a[1] > stack->a[2])
 	{
 		swap_sa(stack);

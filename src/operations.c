@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   operations.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tguillem <tguillem@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/04/14 15:40:38 by tguillem          #+#    #+#             */
+/*   Updated: 2016/04/14 15:44:29 by tguillem         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 void	push_a(t_stack *stack)
@@ -12,7 +24,7 @@ void	push_a(t_stack *stack)
 		stack->a[j] = stack->b[i];
 		i--;
 		j++;
-		ft_putstr("pa ");
+		print_op(stack, "pa");
 	}
 	stack->count++;
 }
@@ -23,16 +35,17 @@ void	push_b(t_stack *stack)
 	int	j;
 
 	i = 0;
-	while (stack->b[i] != stack->b[stack->count])
+	j = stack->b[i];
+	while (stack->b[i + 1] != stack->b[stack->b_size - 1])
 	{
-		j = stack->b[i];
-		stack->b[i + 1] = j;
+		stack->b[i] = j;
+		j = stack->b[i + 1];
 		i++;
 	}
 	stack->b[0] = stack->a[stack->a_size - 1];
 	stack->a_size--;
+	print_op(stack, "pb");
 	stack->count++;
-	ft_putstr("pb ");
 }
 
 void	swap_sa(t_stack *stack)
@@ -45,8 +58,8 @@ void	swap_sa(t_stack *stack)
 		stack->a[stack->a_size - 1] = stack->a[stack->a_size - 2];
 		stack->a[stack->a_size - 2] = tmp;
 	}
+	print_op(stack, "sa");
 	stack->count++;
-	ft_putstr("sa ");
 }
 
 void	swap_ra(t_stack *stack, int pos)
@@ -64,14 +77,14 @@ void	swap_ra(t_stack *stack, int pos)
 		if ((j + i) >= stack->a_size)
 			stack->a[(j + i) - stack->a_size] = backup[j];
 		else
-			stack->a[j + i ] = backup[j];
+			stack->a[j + i] = backup[j];
 		j++;
 	}
 	j = 0;
 	while (j < i)
 	{
+		print_op(stack, "ra");
 		stack->count++;
-		ft_putstr("ra ");
 		j++;
 	}
 }
@@ -91,14 +104,14 @@ void	swap_rra(t_stack *stack, int pos)
 		if ((j - i) >= 0)
 			stack->a[(j - i) - stack->a_size] = backup[j];
 		else
-			stack->a[j - i ] = backup[j];
+			stack->a[j - i] = backup[j];
 		j++;
 	}
 	j = 0;
 	while (j < i)
 	{
+		print_op(stack, "rra");
 		stack->count++;
-		ft_putstr("rra ");
 		j++;
 	}
 }
