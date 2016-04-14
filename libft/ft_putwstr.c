@@ -6,7 +6,7 @@
 /*   By: tguillem <tguillem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/04 13:01:03 by tguillem          #+#    #+#             */
-/*   Updated: 2016/02/04 13:01:40 by tguillem         ###   ########.fr       */
+/*   Updated: 2016/03/15 17:30:18 by tguillem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,5 @@
 
 void		ft_putwstr(wchar_t *strr)
 {
-	while (*strr)
-		ft_putwchar(*strr++);
+	ft_putwstr_fd(strr, 1);
 }

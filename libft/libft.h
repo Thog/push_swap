@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tguillem <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: tguillem <tguillem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/23 12:49:44 by tguillem          #+#    #+#             */
-/*   Updated: 2016/02/16 11:33:17 by tguillem         ###   ########.fr       */
+/*   Updated: 2016/04/14 09:11:28 by tguillem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <string.h>
 # include <inttypes.h>
 # include "ft_time.h"
+# include "ft_printf/ft_printf.h"
 
 void				ft_putchar(char c);
 void				ft_putstr(char const *s);
@@ -75,6 +76,7 @@ int					ft_isdigit(int c);
 int					ft_isalnum(int c);
 int					ft_isascii(int c);
 int					ft_isprint(int c);
+int					ft_isstralnum(char *str);
 
 typedef struct		s_list
 {
@@ -103,9 +105,13 @@ char				*ft_strtrimcmp(const char *s, int (*f)(int c));
 int					ft_max(int x, int y);
 int					ft_min(int x, int y);
 void				ft_putnbrbase(uintmax_t nbr, char *base);
+void				ft_putnbrbase_fd(uintmax_t nbr, char *base, int fd);
 size_t				ft_wstrlen(wchar_t *str);
 void				ft_putwchar(wchar_t chr);
+void				ft_putwchar_fd(wchar_t chr, int fd);
 void				ft_putwstr(wchar_t *strr);
+void				ft_putwstr_fd(wchar_t *strr, int fd);
+int					ft_count_digit(int value, int base);
 char				*ft_itoa_base(int value, int base);
 
 typedef struct		s_buff
@@ -116,5 +122,24 @@ typedef struct		s_buff
 }					t_buff;
 
 int					get_next_line(int const fd, char **line);
+int					ft_parse_args(int ac, char **av, void *data,
+						int (*compute_options)(void*, char*));
+int					ft_usage(char *prg_name, char *usage, char illegal_char);
+char				*ft_error_return(char *str, char *code);
+char				*ft_get_filename(char *path);
+char				**ft_strsplitcmp(char const *s, int (*f)(int c));
+int					ft_error_retint(char *str, int code);
+
+typedef struct		s_array
+{
+	char			*data;
+	struct s_array	*next;
+}					t_array;
+
+t_array				*array_init(t_array *root, char *str);
+t_array				*array_dup(t_array *src);
+t_array				*to_array(char **src);
+char				**to_char_array(t_array *src);
+void				destroy_array(t_array *array);
 
 #endif

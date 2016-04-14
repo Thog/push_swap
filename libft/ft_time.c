@@ -6,11 +6,12 @@
 /*   By: tguillem <tguillem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/10 09:07:39 by tguillem          #+#    #+#             */
-/*   Updated: 2016/03/10 09:08:33 by tguillem         ###   ########.fr       */
+/*   Updated: 2016/03/14 13:20:34 by tguillem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdlib.h>
 
 static char				*get_next(char *str)
 {
@@ -31,7 +32,7 @@ static char				*date_next(char **start_pos, char **end_pos)
 	return (result);
 }
 
-t_date					*ft_date(time_t *time)
+t_date					*ft_parse_date(time_t *time)
 {
 	char		*raw_data;
 	t_date		*result;
@@ -55,4 +56,17 @@ t_date					*ft_date(time_t *time)
 		start_pos++;
 	result->year = date_next(&start_pos, &end_pos);
 	return (result);
+}
+
+void					ft_destroy_date(t_date *to_del)
+{
+	if (to_del)
+	{
+		free(to_del->day);
+		free(to_del->month);
+		free(to_del->day_of_month);
+		free(to_del->time);
+		free(to_del->year);
+		free(to_del);
+	}
 }

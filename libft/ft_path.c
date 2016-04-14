@@ -1,31 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_time.h                                          :+:      :+:    :+:   */
+/*   ft_path.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tguillem <tguillem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/03/10 09:07:22 by tguillem          #+#    #+#             */
-/*   Updated: 2016/03/11 17:17:01 by tguillem         ###   ########.fr       */
+/*   Created: 2016/03/22 15:40:17 by tguillem          #+#    #+#             */
+/*   Updated: 2016/03/22 15:51:27 by tguillem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_TIME_H
-# define FT_TIME_H
+#include "libft.h"
 
-# include <time.h>
-
-typedef struct			s_date
+char		*ft_get_filename(char *path)
 {
-	char				*raw_data;
-	char				*day;
-	char				*month;
-	char				*day_of_month;
-	char				*time;
-	char				*year;
-}						t_date;
+	char	*result;
+	char	*tmp;
+	int		length;
 
-t_date					*ft_parse_date(time_t *time);
-void					ft_destroy_date(t_date *to_del);
-
-#endif
+	result = path;
+	tmp = ft_strstr(result, "/");
+	while (tmp)
+	{
+		length = ft_strlen(tmp) + 1;
+		result = &result[ft_strlen(result) - length + 2];
+		tmp = ft_strstr(result, "/");
+	}
+	return (result);
+}

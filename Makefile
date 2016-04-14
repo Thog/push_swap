@@ -10,7 +10,7 @@
 #*                                                                            *#
 #* ************************************************************************** *#
 
-CFLAGS = -g -O0 -Wall -Wextra -Werror -I./includes
+CFLAGS = -g -Wall -Wextra -Werror -march=native -I./includes
 PRGFLAGS = -lft
 CC = gcc
 

@@ -1,31 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_time.h                                          :+:      :+:    :+:   */
+/*   ft_count_digit.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tguillem <tguillem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/03/10 09:07:22 by tguillem          #+#    #+#             */
-/*   Updated: 2016/03/11 17:17:01 by tguillem         ###   ########.fr       */
+/*   Created: 2016/03/10 16:32:23 by tguillem          #+#    #+#             */
+/*   Updated: 2016/03/10 16:36:03 by tguillem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_TIME_H
-# define FT_TIME_H
+#include "libft.h"
 
-# include <time.h>
-
-typedef struct			s_date
+int		ft_count_digit(int value, int base)
 {
-	char				*raw_data;
-	char				*day;
-	char				*month;
-	char				*day_of_month;
-	char				*time;
-	char				*year;
-}						t_date;
+	int	n;
 
-t_date					*ft_parse_date(time_t *time);
-void					ft_destroy_date(t_date *to_del);
-
-#endif
+	n = 0;
+	while (value)
+	{
+		n++;
+		value /= base;
+	}
+	return (n);
+}

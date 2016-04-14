@@ -1,31 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_time.h                                          :+:      :+:    :+:   */
+/*   ft_nbrlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tguillem <tguillem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/03/10 09:07:22 by tguillem          #+#    #+#             */
-/*   Updated: 2016/03/11 17:17:01 by tguillem         ###   ########.fr       */
+/*   Created: 2016/01/26 15:51:51 by tguillem          #+#    #+#             */
+/*   Updated: 2016/02/16 14:22:40 by tguillem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_TIME_H
-# define FT_TIME_H
+#include "ft_printf.h"
 
-# include <time.h>
-
-typedef struct			s_date
+unsigned int	ft_printf_nbrlen(uintmax_t nbr, char *base)
 {
-	char				*raw_data;
-	char				*day;
-	char				*month;
-	char				*day_of_month;
-	char				*time;
-	char				*year;
-}						t_date;
+	size_t			base_nbr;
+	unsigned int	i;
 
-t_date					*ft_parse_date(time_t *time);
-void					ft_destroy_date(t_date *to_del);
-
-#endif
+	base_nbr = ft_strlen(base);
+	i = 0;
+	if (!nbr)
+		return (1);
+	while (nbr)
+	{
+		nbr /= base_nbr;
+		i++;
+	}
+	return (i);
+}
