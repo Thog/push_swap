@@ -6,7 +6,7 @@
 /*   By: tguillem <tguillem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/11 14:01:50 by tguillem          #+#    #+#             */
-/*   Updated: 2016/04/14 15:42:13 by tguillem         ###   ########.fr       */
+/*   Updated: 2016/04/19 13:21:59 by tguillem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,6 @@ int				main(int ac, char **av)
 		(stack = create_stack(ac, av)))
 	{
 		resolve_pushswap(stack);
-		write(1, "\n", 1);
-		display_resolved(stack);
 	}
 	write(1, "\n", 1);
 	return (0);

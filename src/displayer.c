@@ -6,7 +6,7 @@
 /*   By: tguillem <tguillem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/14 15:40:21 by tguillem          #+#    #+#             */
-/*   Updated: 2016/04/14 15:40:21 by tguillem         ###   ########.fr       */
+/*   Updated: 2016/04/19 13:43:38 by tguillem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,6 @@ void		print_op(t_stack *stack, char *str)
 {
 	if (stack->count)
 		ft_putchar(' ');
+	stack->count++;
 	ft_putstr(str);
-	display_resolved(stack);
 }

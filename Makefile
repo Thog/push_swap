@@ -6,7 +6,7 @@
 #    By: tguillem <tguillem@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/02 17:03:41 by tguillem          #+#    #+#              #
-#    Updated: 2016/04/14 15:50:43 by tguillem         ###   ########.fr        #
+#    Updated: 2016/04/19 13:00:42 by tguillem         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,8 +16,7 @@ CC = gcc
 
 NAME = push_swap
 LIB = libft
-SRC = main.c resolve.c utils.c swap_manager.c operations.c \
-	  stack_cpy.c fast_swap.c displayer.c
+SRC = main.c utils.c displayer.c operations.c
 SRCDIR = src
 OUTDIR = out
 SRCS = $(addprefix $(SRCDIR)/, $(SRC))
