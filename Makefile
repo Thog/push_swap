@@ -6,7 +6,7 @@
 #    By: tguillem <tguillem@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/02 17:03:41 by tguillem          #+#    #+#              #
-#    Updated: 2016/04/25 13:54:38 by tguillem         ###   ########.fr        #
+#    Updated: 2016/09/21 16:54:21 by tguillem         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,8 @@ CC = gcc
 
 NAME = push_swap
 LIB = libft
-SRC = main.c utils.c displayer.c operations.c
+SRC = main.c push_operations.c rotate_operations.c \
+	  operations.c reverse_rotate_operations.c allocator.c pushback_operations.c
 SRCDIR = src
 OUTDIR = out
 SRCS = $(addprefix $(SRCDIR)/, $(SRC))

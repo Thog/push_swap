@@ -1,44 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   displayer.c                                        :+:      :+:    :+:   */
+/*   allocator.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tguillem <tguillem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/04/14 15:40:21 by tguillem          #+#    #+#             */
-/*   Updated: 2016/04/19 13:43:38 by tguillem         ###   ########.fr       */
+/*   Created: 2016/09/21 16:57:04 by tguillem          #+#    #+#             */
+/*   Updated: 2016/09/21 16:57:04 by tguillem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void		display_resolved(t_stack *stack)
+t_node		*new_node(int data)
 {
-	int		i;
+	t_node		*res;
 
-	i = 0;
-	ft_putstr("\na: ");
-	while (i < stack->a_size)
-	{
-		ft_putnbr(stack->a[i]);
-		ft_putchar(' ');
-		i++;
-	}
-	ft_putstr("\nb: ");
-	i = 0;
-	while (i < stack->b_size)
-	{
-		ft_putnbr(stack->b[i]);
-		ft_putchar(' ');
-		i++;
-	}
-	ft_putchar('\n');
+	res = NULL;
+	if ((res = (t_node*)ft_memalloc(sizeof(t_node))))
+		res->data = data;
+	return (res);
 }
 
-void		print_op(t_stack *stack, char *str)
+void		destroy_nlist(t_nlist **lst)
 {
-	if (stack->count)
-		ft_putchar(' ');
-	stack->count++;
-	ft_putstr(str);
+	t_node		*node;
+	t_node		*tmp;
+
+	if (lst && *lst)
+	{
+		node = (*lst)->end;
+		while (node)
+		{
+			tmp = node->next;
+			ft_memdel((void**)&node);
+			node = tmp;
+		}
+		ft_memdel((void**)lst);
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: tguillem <tguillem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/11 14:03:23 by tguillem          #+#    #+#             */
-/*   Updated: 2016/04/19 13:01:27 by tguillem         ###   ########.fr       */
+/*   Updated: 2016/09/21 16:57:39 by tguillem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,18 +17,6 @@
 # include <stdlib.h>
 # include "libft.h"
 
-typedef	struct	s_stack
-{
-	int			*a;
-	int			*b;
-	int			a_size;
-	int			b_size;
-	int			top_a;
-	int			top_b;
-	int			arg;
-	int			count;
-}				t_stack;
-
 typedef struct		s_node
 {
 	int				data;
@@ -38,17 +26,23 @@ typedef struct		s_node
 
 typedef struct		s_nlist
 {
-	size_t			len;
 	t_node			*start;
 	t_node			*end;
 }					t_nlist;
 
-t_stack			*create_stack(int ac, char **av);
-void			resolve_pushswap(t_nlist *a, t_nlist *b);
-void			print_op(t_stack *stack, char *operation);
-void			ra(t_nlist *a);
-void			rb(t_nlist *a);
-void			pa(t_nlist *a, t_nlist *b);
-void			pb(t_nlist *a, t_nlist *b);
-int				is_already_sorted(t_nlist *stack);
+void				resolve_pushswap(t_nlist *a, t_nlist *b);
+void				ra(t_nlist *a);
+void				rb(t_nlist *a);
+void				rr(t_nlist *a, t_nlist *b);
+void				rra(t_nlist *a);
+void				rrb(t_nlist *a);
+void				rrr(t_nlist *a, t_nlist *b);
+void				pa(t_nlist *a, t_nlist *b);
+void				pb(t_nlist *a, t_nlist *b);
+int					is_already_sorted(t_nlist *stack);
+void				pushback_operation(t_node **start, t_node **end);
+void				pushback_init(t_node **start, t_node **end);
+t_node				*new_node(int data);
+void				destroy_nlist(t_nlist **data);
+int					fill_stack(t_nlist *a, int ac, char **av);
 #endif

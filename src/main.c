@@ -6,13 +6,13 @@
 /*   By: tguillem <tguillem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/11 14:01:50 by tguillem          #+#    #+#             */
-/*   Updated: 2016/04/19 13:21:59 by tguillem         ###   ########.fr       */
+/*   Updated: 2016/09/21 16:21:19 by tguillem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-/*static int		check_args_validity(int ac, char **av)
+static int		check_args_validity(int ac, char **av)
 {
 	int		i;
 	int		j;
@@ -36,17 +36,29 @@
 		i++;
 	}
 	return (1);
-}*/
+}
 
 int				main(int ac, char **av)
 {
-	(void)ac;
-	(void)av;
-	/*if (ac >= 3 && check_args_validity(ac, av) &&
-		(stack = create_stack(ac, av)))
+	t_nlist		*a;
+	t_nlist		*b;
+	int			code;
+
+	code = 0;
+	if (ac >= 3 && check_args_validity(ac, av))
 	{
-		resolve_pushswap(stack);
-	}*/
+		a = (t_nlist*)ft_memalloc(sizeof(t_nlist));
+		b = (t_nlist*)ft_memalloc(sizeof(t_nlist));
+		if (!a || !b)
+		{
+			code = 1;
+			ft_printf_fd(2, "Cannot allocate memory on the heap, exiting!\n");
+		}
+		else if (fill_stack(a, ac, av))
+			resolve_pushswap(a, b);
+		destroy_nlist(&a);
+		destroy_nlist(&b);
+	}
 	write(1, "\n", 1);
-	return (0);
+	return (code);
 }
