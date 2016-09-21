@@ -12,49 +12,55 @@
 
 #include "push_swap.h"
 
-static void	rewind_stack(t_stack *stack, int index)
+int			is_already_sorted(t_nlist *stack)
 {
-	int	distance;
+	t_node	*node;
 
-	distance = stack->a_size - 1 - index;
-	if (index < distance && index != 0)
+	node = stack->start;
+	if (stack->start->data == stack->end->data)
+		return (1);
+	while (node->next != NULL)
 	{
-		while (index < stack->a_size)
-		{
-			print_op(stack, "ra");
-			++index;
-		}
+		if (node->data > node->next->data)
+			return (0);
+		node = node->next;
 	}
-	else
+	return (1);
+}
+
+void 			push_smallest_on_start(t_nlist *stack)
+{
+	t_node	*node;
+	int		smallest;
+
+	smallest = stack->start->data;
+	node = stack->start;
+	while (node != NULL)
 	{
-		while (index)
-		{
-			print_op(stack, "rra");
-			--index;
-		}
+		if (node->data < smallest)
+			smallest = node->data;
+		node = node->next;
+	}
+	while (stack->start->data != smallest)
+	{
+		ra(stack);
+		ft_putchar(' ');
 	}
 }
 
-void		resolve_pushswap(t_stack *stack)
+void			resolve_pushswap(t_nlist *a, t_nlist *b)
 {
-	int		tmp;
-	int		index;
-
-	index = 0;
-	while (index < (stack->a_size - 1))
+	if (is_already_sorted(a))
+		return;
+	while (a->start != NULL)
 	{
-		if (stack->a[index + 1] < stack->a[index])
-		{
-			tmp = stack->a[index];
-			stack->a[index] = stack->a[index + 1];
-			stack->a[index + 1] = tmp;
-			print_op(stack, "sa");
-			rewind_stack(stack, index);
-			index = -1;
-		}
-		else
-			print_op(stack, "ra");
-		++index;
+		push_smallest_on_start(a);
+		pb(a, b);
+		ft_putchar(' ');
 	}
-	print_op(stack, "ra");
+	while (b->start != NULL)
+	{
+		pa(a, b);
+		ft_putchar(b->start->next ? ' ' : '\n');
+	}
 }

@@ -29,7 +29,26 @@ typedef	struct	s_stack
 	int			count;
 }				t_stack;
 
+typedef struct		s_node
+{
+	int				data;
+	struct s_node	*next;
+	struct s_node	*prev;
+}					t_node;
+
+typedef struct		s_nlist
+{
+	size_t			len;
+	t_node			*start;
+	t_node			*end;
+}					t_nlist;
+
 t_stack			*create_stack(int ac, char **av);
-void			resolve_pushswap(t_stack *stack);
+void			resolve_pushswap(t_nlist *a, t_nlist *b);
 void			print_op(t_stack *stack, char *operation);
+void			ra(t_nlist *a);
+void			rb(t_nlist *a);
+void			pa(t_nlist *a, t_nlist *b);
+void			pb(t_nlist *a, t_nlist *b);
+int				is_already_sorted(t_nlist *stack);
 #endif
