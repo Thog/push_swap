@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   matrix_lib.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tguillem <tguillem@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/09/20 12:51:29 by tguillem          #+#    #+#             */
+/*   Updated: 2016/09/20 13:26:43 by tguillem         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_matrix.h"
 
 t_matrix		*alloc_matrix(size_t row_length, size_t colum_length)
@@ -42,7 +54,6 @@ t_matrix		*dup_matrix(t_matrix *src)
 	}
 	return (res);
 }
-
 
 void			del_matrix(t_matrix *matrix)
 {

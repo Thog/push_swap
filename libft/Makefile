@@ -6,11 +6,11 @@
 #    By: tguillem <tguillem@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/07/21 12:17:37 by tguillem          #+#    #+#              #
-#    Updated: 2016/07/18 18:45:35 by tguillem         ###   ########.fr        #
+#    Updated: 2016/09/20 12:48:27 by tguillem         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-CFLAGS = -g -Wextra -Wall -Werror -march=native -I./ -lmt
+CFLAGS = -g -Wextra -Wall -Werror -march=native -I./
 CC = gcc
 
 NAME = libft.a
@@ -40,8 +40,7 @@ LIST = ft_lstnew.c ft_lstdelone.c ft_lstdel.c ft_lstadd.c ft_lstiter.c \
 	   ft_lstsize.c ft_lstmap.c ft_lstget.c
 
 MATHS = ft_maths.c vector3d_lib.c vector3d_operator.c matrix_lib.c \
-	   vector3d_spheric_operations.c vector3d_spheric_operation_sup.c \
-	   matrix_operations.c
+	   vector3d_spheric_operations.c matrix_operations.c
 
 SRCS = $(addprefix base/, $(BASE)) $(addprefix string/, $(STRING)) \
 	   $(addprefix list/, $(LIST)) $(addprefix ft_printf/, $(PRINTF)) \

@@ -1,9 +1,16 @@
-#include "ft_vector.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   vector3d_spheric_operations.c                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tguillem <tguillem@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/09/20 12:51:59 by tguillem          #+#    #+#             */
+/*   Updated: 2016/09/20 12:53:11 by tguillem         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-t_vec3d			*spherical_to_cartesian(double theta, double phi)
-{
-	return (new_vec3d(cos(phi) * sin(theta), sin(phi) * sin(theta), cos(theta)));
-}
+#include "ft_vector.h"
 
 double			spherical_theta(t_vec3d *vector)
 {
@@ -16,14 +23,4 @@ double			spherical_phi(t_vec3d *vector)
 
 	phi = atan2(vector->y, vector->x);
 	return (phi < 0 ? phi + 2 * M_PI : phi);
-}
-
-double			sin_theta_square(t_vec3d *vector)
-{
-	return (FT_MAX(0, 1 - vector->z * vector->z));
-}
-
-double			sin_theta(t_vec3d *vector)
-{
-	return (sqrt(sin_theta_square(vector)));
 }

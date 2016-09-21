@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   vector3d_lib.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tguillem <tguillem@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/09/20 12:51:50 by tguillem          #+#    #+#             */
+/*   Updated: 2016/09/20 12:57:00 by tguillem         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_vector.h"
 
 t_vec3d			*alloc_vec3d(void)
@@ -7,7 +19,7 @@ t_vec3d			*alloc_vec3d(void)
 
 void			del_vec3d(t_vec3d *vector)
 {
-	ft_memdel((void**) &vector);
+	ft_memdel((void**)&vector);
 }
 
 t_vec3d			*new_vec3d(double x, double y, double z)

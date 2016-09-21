@@ -1,5 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_string.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tguillem <tguillem@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/09/20 13:36:39 by tguillem          #+#    #+#             */
+/*   Updated: 2016/09/20 13:37:01 by tguillem         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef FT_STRING_H
-#define FT_STRING_H
+# define FT_STRING_H
 # include <wchar.h>
 # include <string.h>
 # include <inttypes.h>
