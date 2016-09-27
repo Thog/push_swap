@@ -15,18 +15,18 @@
 void		ra(t_nlist *a)
 {
 	pushback_operation(&a->start, &a->end);
-	ft_putstr("ra");
+	ft_putstr("ra\n");
 }
 
 void		rb(t_nlist *b)
 {
 	pushback_operation(&b->start, &b->end);
-	ft_putstr("rb");
+	ft_putstr("rb\n");
 }
 
 void		rr(t_nlist *a, t_nlist *b)
 {
 	pushback_operation(&a->start, &a->end);
 	pushback_operation(&b->start, &b->end);
-	ft_putstr("rr");
+	ft_putstr("rr\n");
 }

@@ -14,19 +14,19 @@
 
 void		rra(t_nlist *a)
 {
-	pushback_operation(&a->end, &a->start);
-	ft_putstr("rra");
+	pushup_operation(&a->end, &a->start);
+	ft_putstr("rra\n");
 }
 
 void		rrb(t_nlist *b)
 {
-	pushback_operation(&b->end, &b->start);
-	ft_putstr("rrb");
+	pushup_operation(&b->end, &b->start);
+	ft_putstr("rrb\n");
 }
 
 void		rrr(t_nlist *a, t_nlist *b)
 {
-	pushback_operation(&a->end, &a->start);
-	pushback_operation(&b->end, &b->start);
-	ft_putstr("rrr");
+	pushup_operation(&a->end, &a->start);
+	pushup_operation(&b->end, &b->start);
+	ft_putstr("rrr\n");
 }

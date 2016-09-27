@@ -12,41 +12,36 @@
 
 #include "push_swap.h"
 
-static void	pushback_implementation(t_node **start, t_node **end, int allocator)
+void		link_node(t_node *node, t_node *prev)
 {
-	t_node	*prev;
-	t_node	*start_node;
-	t_node	*end_node;
-
-	if (!*start)
-		return ;
-	start_node = *start;
-	end_node = *end;
-	// before start
-	prev = start_node->prev;
-	// push start before end
-	if (end_node)
-		end_node->prev = start_node;
-	else
-		*end = start_node;
-	// remove the linkage of the next for the prev start
+	//ft_printf_fd(2, "node %p, prev %p\n", node, prev);
+	if (node)
+		node->prev = prev;
 	if (prev)
-		prev->next = NULL;
-	// remove the likage of the prev for the prev start
-	start_node->prev = NULL;
-	// push end after start
-	start_node->next = *end;
-	// start is now prev
-	if (!allocator)
-		*start = prev;
-}
-
-void		pushback_init(t_node **start, t_node **end)
-{
-	pushback_implementation(start, end, 1);
+		prev->next = node;
 }
 
 void		pushback_operation(t_node **start, t_node **end)
 {
-	pushback_implementation(start, end, 0);
+	t_node	*prev;
+
+	prev = (*end)->prev;
+	link_node(*start, *end);
+	(*end)->prev->next = NULL;
+	(*end)->prev = NULL;
+	*start = *end;
+	*end = prev;
+}
+
+void		pushup_operation(t_node **start, t_node **end)
+{
+	t_node	*prev;
+
+	prev = *start;
+	link_node(*start, *end);
+
+	*start = (*start)->next;
+	prev->next = NULL;
+	(*start)->prev = NULL;
+	*end = prev;
 }

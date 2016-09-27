@@ -19,15 +19,16 @@ int				fill_stack(t_nlist *a, int ac, char **av)
 	t_node	*prev_node;
 
 	i = 0;
+	prev_node = NULL;
 	while ((++i) < ac)
 	{
+		//ft_printf_fd(2, "Creating node %s (start: %p, end: %p)\n", av[i], a->start, a->end);
 		node = new_node(ft_atoi(av[i]));
-		if (i == 1)
-			a->start = node;
-		else
-			pushback_init(&node, &prev_node);
 		if (i == (ac - 1))
 			a->end = node;
+		else if (i == 1)
+			a->start = node;
+		link_node(node, prev_node);
 		prev_node = node;
 	}
 	return (1);
@@ -65,7 +66,6 @@ void			push_smallest_on_start(t_nlist *stack)
 	while (stack->start->data != smallest)
 	{
 		ra(stack);
-		ft_putchar(' ');
 	}
 }
 
@@ -77,11 +77,9 @@ void			resolve_pushswap(t_nlist *a, t_nlist *b)
 	{
 		push_smallest_on_start(a);
 		pb(a, b);
-		ft_putchar(' ');
 	}
 	while (b->start != NULL)
 	{
 		pa(a, b);
-		ft_putchar(b->start->next ? ' ' : '\n');
 	}
 }

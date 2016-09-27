@@ -55,10 +55,23 @@ int				main(int ac, char **av)
 			ft_printf_fd(2, "Cannot allocate memory on the heap, exiting!\n");
 		}
 		else if (fill_stack(a, ac, av))
+		{
 			resolve_pushswap(a, b);
+			t_node *node = a->start;
+			while (node)
+			{
+				ft_printf("%i ", node->data);
+				node = node->next;
+			}
+			ft_printf("\n");
+		}
+		else
+			ft_putstr("Error");
 		destroy_nlist(&a);
 		destroy_nlist(&b);
 	}
+	else
+		ft_putstr("Error");
 	write(1, "\n", 1);
 	return (code);
 }
