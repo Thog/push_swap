@@ -39,7 +39,6 @@ void		pushup_operation(t_node **start, t_node **end)
 
 	prev = *start;
 	link_node(*start, *end);
-
 	*start = (*start)->next;
 	prev->next = NULL;
 	(*start)->prev = NULL;

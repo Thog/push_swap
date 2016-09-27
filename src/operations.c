@@ -50,7 +50,7 @@ int				is_already_sorted(t_nlist *stack)
 	return (1);
 }
 
-void			push_smallest_on_start(t_nlist *stack)
+static int		push_smallest_on_start(t_nlist *stack, t_nlist *other)
 {
 	t_node	*node;
 	int		smallest;
@@ -66,7 +66,10 @@ void			push_smallest_on_start(t_nlist *stack)
 	while (stack->start->data != smallest)
 	{
 		ra(stack);
+		if (is_already_sorted(stack) && !other->start)
+			return (0);
 	}
+	return (1);
 }
 
 void			resolve_pushswap(t_nlist *a, t_nlist *b)
@@ -75,11 +78,10 @@ void			resolve_pushswap(t_nlist *a, t_nlist *b)
 		return ;
 	while (a->start != NULL)
 	{
-		push_smallest_on_start(a);
+		if (!push_smallest_on_start(a, b))
+			return ;
 		pb(a, b);
 	}
 	while (b->start != NULL)
-	{
 		pa(a, b);
-	}
 }
