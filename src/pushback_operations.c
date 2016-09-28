@@ -24,20 +24,26 @@ void		pushback_operation(t_node **start, t_node **end)
 {
 	t_node	*prev;
 
+	if (!*end || !*start)
+		return ;
 	prev = (*end)->prev;
 	link_node(*start, *end);
-	(*end)->prev->next = NULL;
+	if ((*end)->prev)
+		(*end)->prev->next = NULL;
 	(*end)->prev = NULL;
 	*start = *end;
-	*end = prev;
+	if (prev)
+		*end = prev;
 }
 
 void		pushup_operation(t_node **start, t_node **end)
 {
 	t_node	*prev;
 
+	if (!*end || !*start)
+		return ;
 	prev = *start;
-	link_node(*start, *end);
+	link_node(prev, *end);
 	*start = (*start)->next;
 	prev->next = NULL;
 	(*start)->prev = NULL;

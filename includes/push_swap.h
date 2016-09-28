@@ -30,7 +30,12 @@ typedef struct		s_nlist
 	t_node			*end;
 }					t_nlist;
 
+int					ft_prgm_base(int ac, char **av, void (*op)(t_nlist*,
+	t_nlist*));
 void				resolve_pushswap(t_nlist *a, t_nlist *b);
+void				sa(t_nlist *a);
+void				sb(t_nlist *b);
+void				ss(t_nlist *a, t_nlist *b);
 void				ra(t_nlist *a);
 void				rb(t_nlist *a);
 void				rr(t_nlist *a, t_nlist *b);
@@ -39,6 +44,7 @@ void				rrb(t_nlist *a);
 void				rrr(t_nlist *a, t_nlist *b);
 void				pa(t_nlist *a, t_nlist *b);
 void				pb(t_nlist *a, t_nlist *b);
+t_node				*compute_end(t_node *node);
 int					is_already_sorted(t_nlist *stack);
 void				pushback_operation(t_node **start, t_node **end);
 void				pushup_operation(t_node **start, t_node **end);

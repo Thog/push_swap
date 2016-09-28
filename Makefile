@@ -14,23 +14,32 @@ CFLAGS = -g -Wall -Wextra -Werror -march=native -I./includes
 PRGFLAGS = -lft
 CC = gcc
 
-NAME = push_swap
+PRG2 = push_swap
+PRG1 = checker
 LIB = libft
-SRC = main.c push_operations.c rotate_operations.c \
+SRC = push_operations.c rotate_operations.c swap_operation.c base.c \
 	  operations.c reverse_rotate_operations.c allocator.c pushback_operations.c
 SRCDIR = src
 OUTDIR = out
 SRCS = $(addprefix $(SRCDIR)/, $(SRC))
-OBJ = $(addprefix $(OUTDIR)/, $(SRC:.c=.o))
+COMMON_OBJ = $(addprefix $(OUTDIR)/, $(SRC:.c=.o))
+PUSH_SWAP_OBJ = $(COMMON_OBJ) $(OUTDIR)/$(PRG2).o
+CHECKER_OBJ = $(COMMON_OBJ) $(OUTDIR)/$(PRG1).o
+OBJ = $(PUSH_SWAP_OBJ) $(OUTDIR)/$(PRG1).o
 
-$(NAME): $(OUTDIR) $(OBJ)
+
+all: $(PRG1) $(PRG2)
+
+$(PRG2): $(OUTDIR) $(PUSH_SWAP_OBJ)
 	(cd $(LIB) && $(MAKE))
-	$(CC) -o $(NAME) $(CFLAGS) -I./libft -L./libft $(OBJ) $(PRGFLAGS)
+	$(CC) -o $(PRG2) $(CFLAGS) -I./libft -L./libft $(PUSH_SWAP_OBJ) $(PRGFLAGS)
+
+$(PRG1): $(OUTDIR) $(CHECKER_OBJ)
+	(cd $(LIB) && $(MAKE))
+	$(CC) -o $(PRG1) $(CFLAGS) -I./libft -L./libft $(CHECKER_OBJ) $(PRGFLAGS)
 
 $(OUTDIR)/%.o: $(SRCDIR)/%.c
-	$(CC) -I $(LIB) -o $@ -c $? $(CFLAGS)
-
-all: $(NAME)
+	@$(CC) -I $(LIB) -o $@ -c $? $(CFLAGS)
 
 $(OUTDIR):
 	@mkdir -p $(OUTDIR)
@@ -42,7 +51,7 @@ clean:
 
 fclean: clean
 	@(cd $(LIB) && $(MAKE) $@)
-	@rm -f $(NAME)
+	@rm -f $(PRG1) $(PRG2)
 
 .PHONY: clean fclean re
 

@@ -12,62 +12,46 @@
 
 #include "push_swap.h"
 
-static int		check_args_validity(int ac, char **av)
+static int		push_smallest_on_start(t_nlist *stack, t_nlist *other)
 {
-	int		i;
-	int		j;
+	t_node	*node;
+	int		smallest;
 
-	i = 1;
-	while (ac > i)
+	smallest = stack->start->data;
+	node = stack->start;
+	while (node != NULL)
 	{
-		j = 0;
-		while (av[i][j])
-		{
-			if (ft_isdigit(av[i][j]) || (!j && av[i][j] == '-' && \
-						ft_isdigit(av[i][j + 1])))
-				j++;
-			else
-				return (0);
-		}
-		i++;
+		if (node->data < smallest)
+			smallest = node->data;
+		node = node->next;
+	}
+	while (stack->start->data != smallest)
+	{
+		ra(stack);
+		if (is_already_sorted(stack) && !other->start)
+			return (0);
 	}
 	return (1);
 }
 
+void			resolve_pushswap(t_nlist *a, t_nlist *b)
+{
+	if (is_already_sorted(a))
+	{
+		write(1, "\n", 1);
+		return ;
+	}
+	while (a->start != NULL)
+	{
+		if (!push_smallest_on_start(a, b))
+			return ;
+		pb(a, b);
+	}
+	while (b->start != NULL)
+		pa(a, b);
+}
+
 int				main(int ac, char **av)
 {
-	t_nlist		*a;
-	t_nlist		*b;
-	int			code;
-
-	code = 0;
-	if (ac >= 3 && check_args_validity(ac, av))
-	{
-		a = (t_nlist*)ft_memalloc(sizeof(t_nlist));
-		b = (t_nlist*)ft_memalloc(sizeof(t_nlist));
-		if (!a || !b)
-		{
-			code = 1;
-			ft_putstr("Error");
-		}
-		else if (fill_stack(a, ac, av))
-		{
-			resolve_pushswap(a, b);
-			t_node *node = a->start;
-			while (node)
-			{
-				ft_printf("%i ", node->data);
-				node = node->next;
-			}
-			ft_printf("\n");
-		}
-		else
-			ft_putstr("Error");
-		destroy_nlist(&a);
-		destroy_nlist(&b);
-	}
-	else
-		ft_putstr("Error");
-	write(1, "\n", 1);
-	return (code);
+	return (ft_prgm_base(ac, av, &resolve_pushswap));
 }

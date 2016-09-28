@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-static void	push_operation(t_nlist *a, t_nlist *b, char *operation)
+static void		push_operation(t_nlist *a, t_nlist *b, char *operation)
 {
 	t_node	*start_a;
 	t_node	*start_b;
@@ -28,16 +28,18 @@ static void	push_operation(t_nlist *a, t_nlist *b, char *operation)
 		if (start_b)
 			start_b->prev = start_a;
 		b->start = start_a;
+		a->end = compute_end(a->start);
+		b->end = compute_end(b->start);
 		ft_putstr(operation);
 	}
 }
 
-void		pa(t_nlist *a, t_nlist *b)
+void			pa(t_nlist *a, t_nlist *b)
 {
 	push_operation(b, a, "pa\n");
 }
 
-void		pb(t_nlist *a, t_nlist *b)
+void			pb(t_nlist *a, t_nlist *b)
 {
 	push_operation(a, b, "pb\n");
 }
