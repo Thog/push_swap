@@ -1,5 +1,20 @@
 #include "push_swap.h"
 
+static int		is_valid_arg(char *str, int j)
+{
+	size_t		tmp;
+
+	tmp = str[j] == '-' && ft_isdigit(str[j + 1]);
+	if (!j)
+	{
+		tmp += ft_count_digit(ft_atoi(str), 10);
+		if (ft_strlen(str) == tmp)
+			return (1);
+		ft_printf_fd(2, "%i == %i\n", tmp, ft_strlen(str));
+	}
+	return (ft_isdigit(str[j]));
+}
+
 static int		check_args_validity(int ac, char **av)
 {
 	int		i;
@@ -11,8 +26,7 @@ static int		check_args_validity(int ac, char **av)
 		j = 0;
 		while (av[i][j])
 		{
-			if (ft_isdigit(av[i][j]) || (!j && av[i][j] == '-' && \
-						ft_isdigit(av[i][j + 1])))
+			if (is_valid_arg(av[i], j))
 				j++;
 			else
 				return (0);
@@ -34,15 +48,15 @@ int				ft_prgm_base(int ac, char **av, void (*op)(t_nlist*, t_nlist*))
 		a = (t_nlist*)ft_memalloc(sizeof(t_nlist));
 		b = (t_nlist*)ft_memalloc(sizeof(t_nlist));
 		if ((!a || !b) && (code = 1))
-			ft_putstr_fd("Error alloc\n", 2);
+			ft_putstr_fd("Error\n", 2);
 		else if (fill_stack(a, ac, av))
 			op(a, b);
 		else
-			ft_putstr_fd("Error fill\n", 2);
+			ft_putstr_fd("Error\n", 2);
 		destroy_nlist(&a);
 		destroy_nlist(&b);
 	}
 	else
-		ft_putstr_fd("Error args\n", 2);
+		ft_putstr_fd("Error\n", 2);
 	return (code);
 }
