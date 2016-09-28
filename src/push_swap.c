@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tguillem <tguillem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -27,11 +27,7 @@ static int		check_args_validity(int ac, char **av)
 						ft_isdigit(av[i][j + 1])))
 				j++;
 			else
-			{
-				ft_putstr(
-					"Invalid arguments. Please check them and try again.");
 				return (0);
-			}
 		}
 		i++;
 	}
@@ -52,7 +48,7 @@ int				main(int ac, char **av)
 		if (!a || !b)
 		{
 			code = 1;
-			ft_printf_fd(2, "Cannot allocate memory on the heap, exiting!\n");
+			ft_putstr("Error");
 		}
 		else if (fill_stack(a, ac, av))
 		{

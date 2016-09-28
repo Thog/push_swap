@@ -14,7 +14,6 @@
 
 void		link_node(t_node *node, t_node *prev)
 {
-	//ft_printf_fd(2, "node %p, prev %p\n", node, prev);
 	if (node)
 		node->prev = prev;
 	if (prev)

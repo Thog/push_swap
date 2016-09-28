@@ -12,28 +12,6 @@
 
 #include "push_swap.h"
 
-int				fill_stack(t_nlist *a, int ac, char **av)
-{
-	int		i;
-	t_node	*node;
-	t_node	*prev_node;
-
-	i = 0;
-	prev_node = NULL;
-	while ((++i) < ac)
-	{
-		//ft_printf_fd(2, "Creating node %s (start: %p, end: %p)\n", av[i], a->start, a->end);
-		node = new_node(ft_atoi(av[i]));
-		if (i == (ac - 1))
-			a->end = node;
-		else if (i == 1)
-			a->start = node;
-		link_node(node, prev_node);
-		prev_node = node;
-	}
-	return (1);
-}
-
 int				is_already_sorted(t_nlist *stack)
 {
 	t_node	*node;
