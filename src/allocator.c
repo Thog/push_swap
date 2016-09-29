@@ -6,7 +6,7 @@
 /*   By: tguillem <tguillem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/21 16:57:04 by tguillem          #+#    #+#             */
-/*   Updated: 2016/09/21 16:57:04 by tguillem         ###   ########.fr       */
+/*   Updated: 2016/09/29 10:34:49 by tguillem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int				fill_stack(t_nlist *a, int ac, char **av)
 	return (1);
 }
 
-t_node		*new_node(int data)
+t_node			*new_node(int data)
 {
 	t_node		*res;
 
@@ -58,7 +58,7 @@ t_node		*new_node(int data)
 	return (res);
 }
 
-void		destroy_nlist(t_nlist **lst)
+void			destroy_nlist(t_nlist **lst)
 {
 	t_node		*node;
 	t_node		*tmp;
