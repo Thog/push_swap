@@ -6,7 +6,7 @@
 /*   By: tguillem <tguillem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/29 10:33:34 by tguillem          #+#    #+#             */
-/*   Updated: 2016/09/29 10:33:34 by tguillem         ###   ########.fr       */
+/*   Updated: 2016/09/29 11:53:26 by tguillem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ static int		is_valid_arg(char *str, int j)
 		tmp += ft_count_digit(ft_atoi(str), 10);
 		if (ft_strlen(str) == tmp)
 			return (1);
-		ft_printf_fd(2, "%i == %i\n", tmp, ft_strlen(str));
 	}
 	return (ft_isdigit(str[j]));
 }
@@ -68,7 +67,7 @@ int				ft_prgm_base(int ac, char **av, void (*op)(t_nlist*, t_nlist*))
 		destroy_nlist(&a);
 		destroy_nlist(&b);
 	}
-	else
+	else if (ac >= 3)
 		ft_putstr_fd("Error\n", 2);
 	return (code);
 }
