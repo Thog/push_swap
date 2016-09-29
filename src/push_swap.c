@@ -6,17 +6,17 @@
 /*   By: tguillem <tguillem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/11 14:01:50 by tguillem          #+#    #+#             */
-/*   Updated: 2016/09/29 11:49:33 by tguillem         ###   ########.fr       */
+/*   Updated: 2016/09/29 15:14:24 by tguillem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static int		is_node_closest_to_end(t_node *node)
+static long		is_node_closest_to_end(t_node *node)
 {
 	t_node		*tmp;
-	ssize_t		d_start;
-	ssize_t		d_end;
+	long		d_start;
+	long		d_end;
 
 	d_start = 0;
 	d_end = 0;
@@ -32,14 +32,14 @@ static int		is_node_closest_to_end(t_node *node)
 		d_end++;
 		tmp = tmp->next;
 	}
-	return (d_end < d_start);
+	return (d_end - d_start);
 }
 
 static int		push_smallest_on_start(t_nlist *stack, t_nlist *other)
 {
 	t_node	*node;
 	t_node	*smallest;
-	int		closest_end;
+	long	closest_end;
 
 	smallest = stack->start;
 	node = stack->start;
@@ -52,8 +52,10 @@ static int		push_smallest_on_start(t_nlist *stack, t_nlist *other)
 	closest_end = is_node_closest_to_end(smallest);
 	while (stack->start != smallest)
 	{
-		if (closest_end)
+		if (closest_end < 0)
 			ra(stack);
+		else if (stack->start && stack->start->next == smallest)
+			sa(stack);
 		else
 			rra(stack);
 		if (is_already_sorted(stack) && !other->start)
