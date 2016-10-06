@@ -6,7 +6,7 @@
 /*   By: tguillem <tguillem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/29 10:33:38 by tguillem          #+#    #+#             */
-/*   Updated: 2016/09/29 12:20:01 by tguillem         ###   ########.fr       */
+/*   Updated: 2016/10/06 16:44:47 by tguillem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ void			apply_checker(t_nlist *a, t_nlist *b)
 {
 	char	*buffer;
 
+	show_stacks(a, b);
 	while (get_next_line(0, &buffer) > 0)
 		if (!apply_operation(a, b, buffer))
 			return ;

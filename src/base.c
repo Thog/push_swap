@@ -6,7 +6,7 @@
 /*   By: tguillem <tguillem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/29 10:33:34 by tguillem          #+#    #+#             */
-/*   Updated: 2016/09/29 11:53:26 by tguillem         ###   ########.fr       */
+/*   Updated: 2016/10/06 16:53:08 by tguillem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,14 @@ static int		is_valid_arg(char *str, int j)
 {
 	size_t		tmp;
 
-	tmp = str[j] == '-' && ft_isdigit(str[j + 1]);
+	tmp = !j && str[j] == '-' && ft_isdigit(str[j + 1]);
 	if (!j)
 	{
-		tmp += ft_count_digit(ft_atoi(str), 10);
-		if (ft_strlen(str) == tmp)
-			return (1);
+		if ((str[0] == '-' && ft_strcmp(str, "-2147483648") > 0) ||
+			ft_strcmp(str, "2147483647") > 0)
+			return (0);
 	}
-	return (ft_isdigit(str[j]));
+	return (ft_isdigit(str[j]) || tmp);
 }
 
 static int		check_args_validity(int ac, char **av)
