@@ -6,7 +6,7 @@
 /*   By: tguillem <tguillem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/29 10:33:38 by tguillem          #+#    #+#             */
-/*   Updated: 2016/10/06 16:44:47 by tguillem         ###   ########.fr       */
+/*   Updated: 2016/10/06 18:16:22 by tguillem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,17 @@ void			show_stacks(t_nlist *a, t_nlist *b)
 	ft_putstr_fd("\n", 2);
 }
 
-static int		apply_operation(t_nlist *a, t_nlist *b, char *buffer)
+static int		is_valid_op(char *buffer)
+{
+	return (!ft_strcmp("sa", buffer) || !ft_strcmp("sb", buffer) ||
+		!ft_strcmp("ss", buffer) || !ft_strcmp("pa", buffer) ||
+		!ft_strcmp("pb", buffer) || !ft_strcmp("ra", buffer) ||
+		!ft_strcmp("rb", buffer) || !ft_strcmp("rr", buffer) ||
+		!ft_strcmp("rra", buffer) || !ft_strcmp("rrb", buffer) ||
+		!ft_strcmp("rrr", buffer));
+}
+
+static void		apply_operation(t_nlist *a, t_nlist *b, char *buffer)
 {
 	if (!ft_strcmp("sa", buffer))
 		sa(a);
@@ -58,19 +68,34 @@ static int		apply_operation(t_nlist *a, t_nlist *b, char *buffer)
 		rrb(b);
 	else if (!ft_strcmp("rrr", buffer))
 		rrr(a, b);
-	else
-		return (ft_error_retint("Error\n", 0));
-	return (1);
 }
 
 void			apply_checker(t_nlist *a, t_nlist *b)
 {
 	char	*buffer;
+	t_array	*operations;
+	t_array	*index;
 
-	show_stacks(a, b);
+	operations = NULL;
+	buffer = NULL;
 	while (get_next_line(0, &buffer) > 0)
-		if (!apply_operation(a, b, buffer))
+	{
+		if (!is_valid_op(buffer))
+		{
+			ft_putstr_fd("Error\n", 2);
+			destroy_array(operations);
 			return ;
+		}
+		operations = array_init(operations, ft_strdup(buffer));
+		ft_strdel(&buffer);
+	}
+	index = operations;
+	while (index)
+	{
+		apply_operation(a, b, index->data);
+		index = index->next;
+	}
+	destroy_array(operations);
 	ft_printf("%s\n", (is_already_sorted(a) && !b->start) ? "OK" : "KO");
 }
 
