@@ -6,7 +6,7 @@
 /*   By: tguillem <tguillem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/21 16:57:04 by tguillem          #+#    #+#             */
-/*   Updated: 2016/09/29 10:34:49 by tguillem         ###   ########.fr       */
+/*   Updated: 2016/10/06 18:35:00 by tguillem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void			destroy_nlist(t_nlist **lst)
 
 	if (lst && *lst)
 	{
-		node = (*lst)->end;
+		node = (*lst)->start;
 		while (node)
 		{
 			tmp = node->next;

@@ -6,7 +6,7 @@
 /*   By: tguillem <tguillem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/29 10:33:34 by tguillem          #+#    #+#             */
-/*   Updated: 2016/10/06 17:52:18 by tguillem         ###   ########.fr       */
+/*   Updated: 2016/10/06 18:32:30 by tguillem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ int				ft_prgm_base(int ac, char **av, void (*op)(t_nlist*, t_nlist*))
 		destroy_nlist(&b);
 	}
 	else if (ac >= 3)
-		ft_putstr_fd("Error\n", 2);
+		ft_putstr_fd("Error args\n", 2);
 	resource_manager_destroy();
 	return (code);
 }
