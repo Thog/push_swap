@@ -6,7 +6,7 @@
 /*   By: tguillem <tguillem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/29 10:33:34 by tguillem          #+#    #+#             */
-/*   Updated: 2016/10/06 18:32:30 by tguillem         ###   ########.fr       */
+/*   Updated: 2016/10/07 18:12:19 by tguillem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static int		is_valid_arg(char *str, int j)
 	if (!j)
 	{
 		if ((str[0] == '-' && ft_strcmp(str, "-2147483648") > 0
-			&& ft_strlen(str) >= 11) ||	(ft_strcmp(str, "2147483647") > 0
+			&& ft_strlen(str) >= 11) || (ft_strcmp(str, "2147483647") > 0
 			&& ft_strlen(str) >= 10))
 			return (0);
 	}
