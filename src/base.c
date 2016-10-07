@@ -19,8 +19,9 @@ static int		is_valid_arg(char *str, int j)
 	tmp = !j && str[j] == '-' && ft_isdigit(str[j + 1]);
 	if (!j)
 	{
-		if ((str[0] == '-' && ft_strcmp(str, "-2147483648") > 0) ||
-			ft_strcmp(str, "2147483647") > 0)
+		if ((str[0] == '-' && ft_strcmp(str, "-2147483648") > 0
+			&& ft_strlen(str) >= 11) ||	(ft_strcmp(str, "2147483647") > 0
+			&& ft_strlen(str) >= 10))
 			return (0);
 	}
 	return (ft_isdigit(str[j]) || tmp);
@@ -68,7 +69,7 @@ int				ft_prgm_base(int ac, char **av, void (*op)(t_nlist*, t_nlist*))
 		destroy_nlist(&b);
 	}
 	else if (ac >= 3)
-		ft_putstr_fd("Error args\n", 2);
+		ft_putstr_fd("Error\n", 2);
 	resource_manager_destroy();
 	return (code);
 }
