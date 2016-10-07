@@ -6,7 +6,7 @@
 /*   By: tguillem <tguillem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/11 14:01:50 by tguillem          #+#    #+#             */
-/*   Updated: 2016/09/29 15:14:24 by tguillem         ###   ########.fr       */
+/*   Updated: 2016/10/07 18:31:55 by tguillem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,10 +67,7 @@ static int		push_smallest_on_start(t_nlist *stack, t_nlist *other)
 void			resolve_pushswap(t_nlist *a, t_nlist *b)
 {
 	if (is_already_sorted(a))
-	{
-		write(1, "\n", 1);
 		return ;
-	}
 	while (a->start != NULL)
 	{
 		if (!push_smallest_on_start(a, b))

@@ -6,7 +6,7 @@
 /*   By: tguillem <tguillem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/29 10:33:38 by tguillem          #+#    #+#             */
-/*   Updated: 2016/10/06 18:16:22 by tguillem         ###   ########.fr       */
+/*   Updated: 2016/10/07 18:29:10 by tguillem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static int		is_valid_op(char *buffer)
 		!ft_strcmp("rrr", buffer));
 }
 
-static void		apply_operation(t_nlist *a, t_nlist *b, char *buffer)
+static int		apply_operation(t_nlist *a, t_nlist *b, char *buffer)
 {
 	if (!ft_strcmp("sa", buffer))
 		sa(a);
@@ -68,6 +68,7 @@ static void		apply_operation(t_nlist *a, t_nlist *b, char *buffer)
 		rrb(b);
 	else if (!ft_strcmp("rrr", buffer))
 		rrr(a, b);
+	return (1);
 }
 
 void			apply_checker(t_nlist *a, t_nlist *b)
@@ -89,12 +90,10 @@ void			apply_checker(t_nlist *a, t_nlist *b)
 		operations = array_init(operations, ft_strdup(buffer));
 		ft_strdel(&buffer);
 	}
+	ft_strdel(&buffer);
 	index = operations;
-	while (index)
-	{
-		apply_operation(a, b, index->data);
+	while (index && apply_operation(a, b, index->data))
 		index = index->next;
-	}
 	destroy_array(operations);
 	ft_printf("%s\n", (is_already_sorted(a) && !b->start) ? "OK" : "KO");
 }
