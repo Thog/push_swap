@@ -23,24 +23,26 @@ int				is_duplicate(t_node *stack, int data)
 	return (0);
 }
 
-int				fill_stack(t_nlist *a, int ac, char **av)
+int				fill_stack(t_nlist *a, int ac, char **av, char ***split)
 {
 	int		i;
 	int		data;
 	t_node	*node;
 	t_node	*prev_node;
+	char	**args;
 
-	i = 0;
+	i = !*split ? 0 : -1;
 	prev_node = NULL;
+	args = !*split ? av : *split;
 	while ((++i) < ac)
 	{
-		data = ft_atoi(av[i]);
+		data = ft_atoi(args[i]);
 		if (is_duplicate(a->start, data))
 			return (0);
 		node = new_node(data);
 		if (i == (ac - 1))
 			a->end = node;
-		else if (i == 1)
+		else if (i == (!*split ? 1 : 0))
 			a->start = node;
 		link_node(node, prev_node);
 		prev_node = node;
