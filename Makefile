@@ -19,7 +19,7 @@ PRG1 = checker
 LIB = libft
 SRC = push_operations.c rotate_operations.c swap_operation.c base.c \
 	  operations.c reverse_rotate_operations.c allocator.c \
-	  pushback_operations.c splitter_validator.c
+	  pushback_operations.c utils.c
 SRCDIR = src
 OUTDIR = out
 SRCS = $(addprefix $(SRCDIR)/, $(SRC))
