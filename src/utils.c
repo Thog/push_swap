@@ -20,3 +20,19 @@ int			check_args_before_split(char *name)
 	}
 	return (0);
 }
+
+void		destroy_args(char ***args)
+{
+	char		**arg;
+
+	if (*args)
+	{
+		arg = *args;
+		while (arg && *arg)
+		{
+			ft_strdel(arg);
+			arg++;
+		}
+		free(*args);
+	}
+}

@@ -12,28 +12,6 @@
 
 #include "push_swap.h"
 
-void			show_stacks(t_nlist *a, t_nlist *b)
-{
-	t_node	*node;
-
-	node = a->start;
-	ft_printf_fd(2, "a (%p / %p): %s", node, a->end, node ? "" : "Empty");
-	while (node)
-	{
-		ft_printf_fd(2, "%i ", node->data);
-		node = node->next;
-	}
-	ft_putstr_fd("\n", 2);
-	node = b->start;
-	ft_printf_fd(2, "b (%p / %p): %s", node, b->end, node ? "" : "Empty");
-	while (node)
-	{
-		ft_printf_fd(2, "%i ", node->data);
-		node = node->next;
-	}
-	ft_putstr_fd("\n", 2);
-}
-
 static long		is_node_closest_to_end(t_node *node)
 {
 	t_node		*tmp;
@@ -88,7 +66,6 @@ static int		push_smallest_on_start(t_nlist *stack, t_nlist *other)
 
 void			resolve_pushswap(t_nlist *a, t_nlist *b)
 {
-	show_stacks(a, b);
 	if (is_already_sorted(a))
 		return ;
 	while (a->start != NULL)

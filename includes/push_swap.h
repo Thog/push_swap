@@ -51,5 +51,7 @@ void				pushup_operation(t_node **start, t_node **end);
 void				link_node(t_node *start, t_node *end);
 t_node				*new_node(int data);
 void				destroy_nlist(t_nlist **data);
-int					fill_stack(t_nlist *a, int ac, char **av);
+int					fill_stack(t_nlist *a, int ac, char **av, char ***split);
+int					check_args_before_split(char *name);
+void				destroy_args(char ***args);
 #endif

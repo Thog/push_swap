@@ -33,6 +33,8 @@ static int		check_args_validity(int ac, char **av, int splitted)
 	int		j;
 
 	i = !splitted ? 1 : 0;
+	if (ac == 1 && splitted)
+		return (2);
 	while (ac > i)
 	{
 		j = 0;
@@ -41,7 +43,7 @@ static int		check_args_validity(int ac, char **av, int splitted)
 			if (is_valid_arg(av[i], j))
 				j++;
 			else
-				return (0);
+				return (2);
 		}
 		i++;
 	}
@@ -65,16 +67,17 @@ static int		compute_ac(int ac, char **split)
 
 int				check_condtion(int ac, char **av, char ***args)
 {
-
-	if (ac >= 3 && check_args_validity(ac, av, 0))
-		return (1);
+	if (ac >= 3)
+		return (check_args_validity(ac, av, 0));
 	else if (ac == 2)
 	{
 		if (!check_args_before_split(av[1]))
 			return (2);
 		*args = ft_strsplitcmp(av[1], &ft_iswhitespace);
-		return (*args && **args && check_args_validity(compute_ac(ac, *args),
-			*args, 1));
+		if (*args && **args)
+			return (check_args_validity(compute_ac(ac, *args), *args, 1));
+		else
+			return (2);
 	}
 	return (0);
 }
@@ -104,6 +107,7 @@ int				ft_prgm_base(int ac, char **av, void (*op)(t_nlist*, t_nlist*))
 	}
 	else if (code != 0)
 		ft_putstr_fd("Error\n", 2);
+	destroy_args(&args);
 	resource_manager_destroy();
 	return (code);
 }
