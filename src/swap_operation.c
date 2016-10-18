@@ -6,7 +6,7 @@
 /*   By: tguillem <tguillem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/29 10:33:52 by tguillem          #+#    #+#             */
-/*   Updated: 2016/09/29 10:33:52 by tguillem         ###   ########.fr       */
+/*   Updated: 2016/10/18 10:25:53 by tguillem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,21 +37,24 @@ static void		swap_first_entries(t_nlist *a)
 	}
 }
 
-void			sa(t_nlist *a)
+void			sa(t_nlist *a, int verbose)
 {
 	swap_first_entries(a);
-	ft_putstr("sa\n");
+	if (verbose)
+		ft_putstr("sa\n");
 }
 
-void			sb(t_nlist *b)
+void			sb(t_nlist *b, int verbose)
 {
 	swap_first_entries(b);
-	ft_putstr("sb\n");
+	if (verbose)
+		ft_putstr("sb\n");
 }
 
-void			ss(t_nlist *a, t_nlist *b)
+void			ss(t_nlist *a, t_nlist *b, int verbose)
 {
 	swap_first_entries(a);
 	swap_first_entries(b);
-	ft_putstr("ss\n");
+	if (verbose)
+		ft_putstr("ss\n");
 }

@@ -6,7 +6,7 @@
 /*   By: tguillem <tguillem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/11 14:01:50 by tguillem          #+#    #+#             */
-/*   Updated: 2016/10/07 18:31:55 by tguillem         ###   ########.fr       */
+/*   Updated: 2016/10/18 10:29:24 by tguillem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,11 +53,11 @@ static int		push_smallest_on_start(t_nlist *stack, t_nlist *other)
 	while (stack->start != smallest)
 	{
 		if (closest_end < 0)
-			ra(stack);
+			ra(stack, 1);
 		else if (stack->start && stack->start->next == smallest)
-			sa(stack);
+			sa(stack, 1);
 		else
-			rra(stack);
+			rra(stack, 1);
 		if (is_already_sorted(stack) && !other->start)
 			return (0);
 	}
@@ -72,10 +72,10 @@ void			resolve_pushswap(t_nlist *a, t_nlist *b)
 	{
 		if (!push_smallest_on_start(a, b))
 			return ;
-		pb(a, b);
+		pb(a, b, 1);
 	}
 	while (b->start != NULL)
-		pa(a, b);
+		pa(a, b, 1);
 }
 
 int				main(int ac, char **av)

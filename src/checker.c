@@ -6,7 +6,7 @@
 /*   By: tguillem <tguillem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/29 10:33:38 by tguillem          #+#    #+#             */
-/*   Updated: 2016/10/07 18:29:10 by tguillem         ###   ########.fr       */
+/*   Updated: 2016/10/18 10:30:17 by tguillem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,27 +47,27 @@ static int		is_valid_op(char *buffer)
 static int		apply_operation(t_nlist *a, t_nlist *b, char *buffer)
 {
 	if (!ft_strcmp("sa", buffer))
-		sa(a);
+		sa(a, 0);
 	else if (!ft_strcmp("sb", buffer))
-		sb(b);
+		sb(b, 0);
 	else if (!ft_strcmp("ss", buffer))
-		ss(a, b);
+		ss(a, b, 0);
 	else if (!ft_strcmp("pa", buffer))
-		pa(a, b);
+		pa(a, b, 0);
 	else if (!ft_strcmp("pb", buffer))
-		pb(a, b);
+		pb(a, b, 0);
 	else if (!ft_strcmp("ra", buffer))
-		ra(a);
+		ra(a, 0);
 	else if (!ft_strcmp("rb", buffer))
-		rb(b);
+		rb(b, 0);
 	else if (!ft_strcmp("rr", buffer))
-		rr(a, b);
+		rr(a, b, 0);
 	else if (!ft_strcmp("rra", buffer))
-		rra(a);
+		rra(a, 0);
 	else if (!ft_strcmp("rrb", buffer))
-		rrb(b);
+		rrb(b, 0);
 	else if (!ft_strcmp("rrr", buffer))
-		rrr(a, b);
+		rrr(a, b, 0);
 	return (1);
 }
 
