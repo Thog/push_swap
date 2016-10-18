@@ -6,7 +6,7 @@
 /*   By: tguillem <tguillem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/29 10:33:34 by tguillem          #+#    #+#             */
-/*   Updated: 2016/10/07 18:12:19 by tguillem         ###   ########.fr       */
+/*   Updated: 2016/10/18 10:02:32 by tguillem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ static int		compute_ac(int ac, char **split)
 
 int				check_condtion(int ac, char **av, char ***args)
 {
+	*args = NULL;
 	if (ac >= 3)
 		return (check_args_validity(ac, av, 0));
 	else if (ac == 2)
@@ -89,7 +90,6 @@ int				ft_prgm_base(int ac, char **av, void (*op)(t_nlist*, t_nlist*))
 	char		**args;
 	int			code;
 
-	args = NULL;
 	code = check_condtion(ac, av, &args);
 	if (code == 1)
 	{
