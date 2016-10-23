@@ -6,7 +6,7 @@
 /*   By: tguillem <tguillem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/11 14:01:50 by tguillem          #+#    #+#             */
-/*   Updated: 2016/10/18 10:29:24 by tguillem         ###   ########.fr       */
+/*   Updated: 2016/10/23 13:26:45 by tguillem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,11 +53,11 @@ static int		push_smallest_on_start(t_nlist *stack, t_nlist *other)
 	while (stack->start != smallest)
 	{
 		if (closest_end < 0)
-			ra(stack, 1);
+			rra(stack, 1);
 		else if (stack->start && stack->start->next == smallest)
 			sa(stack, 1);
 		else
-			rra(stack, 1);
+			ra(stack, 1);
 		if (is_already_sorted(stack) && !other->start)
 			return (0);
 	}
