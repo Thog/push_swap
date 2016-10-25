@@ -54,4 +54,11 @@ void				destroy_nlist(t_nlist **data);
 int					fill_stack(t_nlist *a, int ac, char **av, char ***split);
 int					check_args_before_split(char *name);
 void				destroy_args(char ***args);
+int					dist_end(t_node *node);
+t_node				*get_max(t_node *node);
+int					dist_end(t_node *node);
+int					d_node(t_node *node);
+void				fast_swap(t_nlist *a, t_nlist *b);
+void				merge_swap(t_nlist *a, t_nlist *b);
+
 #endif

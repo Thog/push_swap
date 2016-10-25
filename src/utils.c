@@ -12,6 +12,44 @@
 
 #include "push_swap.h"
 
+int			dist_end(t_node *node)
+{
+	int			len;
+
+	len = 0;
+	while (node)
+	{
+		len++;
+		node = node->next;
+	}
+	return (len);
+}
+
+t_node		*get_max(t_node *node)
+{
+	t_node	*res;
+
+	res = node;
+	while (node)
+	{
+		if (res->data < node->data)
+			res = node;
+		node = node->next;
+	}
+	return (res);
+}
+
+int			d_node(t_node *node)
+{
+	t_node		*tmp;
+
+	tmp = get_max(node);
+	if (tmp)
+		return (tmp->data);
+	else
+		return (node->data);
+}
+
 int			check_args_before_split(char *name)
 {
 	int		size;
