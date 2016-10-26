@@ -6,7 +6,7 @@
 /*   By: tguillem <tguillem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/11 14:03:23 by tguillem          #+#    #+#             */
-/*   Updated: 2016/10/18 10:28:28 by tguillem         ###   ########.fr       */
+/*   Updated: 2016/10/26 15:05:32 by tguillem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,10 +62,11 @@ int					d_node(t_node *node);
 void				fast_swap(t_nlist *a, t_nlist *b);
 void				merge_swap(t_nlist *a, t_nlist *b, int min);
 int					contain_value(int nb, int *array, int len);
-void 				rotation_chooser(t_nlist *a, t_nlist *b, int min);
+void				rotation_chooser(t_nlist *a, t_nlist *b, int min);
 int					is_bigger(t_node *node, int n, int min);
 void				rotation_selector(t_nlist *b);
 int					is_smallest(t_node *src, t_node *cmp);
 void				order_stacks(t_nlist *a, t_nlist *b, int min);
-int					get_biggest_entry(t_node *node, int *array, int len, int pos);
+int					get_biggest_entry(t_node *node, int *array, int len,
+	int pos);
 #endif

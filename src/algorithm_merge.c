@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   algorithm_merge.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tguillem <tguillem@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/10/26 15:01:01 by tguillem          #+#    #+#             */
+/*   Updated: 2016/10/26 15:03:12 by tguillem         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 static int		*get_raw_sorted_stack(t_node *node, int len, int pos)
@@ -22,18 +34,21 @@ static void		final_sorting(t_nlist *a)
 		ra(a, 1);
 }
 
-static void 	order_and_push_to_a(t_nlist *a, t_nlist *b, int min)
+static void		order_and_push_to_a(t_nlist *a, t_nlist *b, int min)
 {
 	if (dist_end(a->start) > 1 && a->end->data > a->start->data)
 		rra(a, 1);
 	while (dist_end(b->start) > 1)
 	{
-		if (dist_end(b->start) > 2 && b->start->data > b->start->next->data && b->start->data > b->start->next->next->data)
+		if (dist_end(b->start) > 2 && b->start->data > b->start->next->data &&
+				b->start->data > b->start->next->next->data)
 			rotation_chooser(a, b, min);
-		while (dist_end(a->start) > 1 && is_bigger(a->start, b->start->data, min))
+		while (dist_end(a->start) > 1 && is_bigger(a->start, b->start->data,
+				min))
 			rotation_selector(b);
 		pa(a, b, 1);
-		if (a->start->data > a->start->next->data && a->start->next->data != min)
+		if (a->start->data > a->start->next->data &&
+			a->start->next->data != min)
 		{
 			if (dist_end(b->start) > 1 && b->start->data > b->start->next->data)
 				ss(a, b, 1);
@@ -49,7 +64,7 @@ static void 	order_and_push_to_a(t_nlist *a, t_nlist *b, int min)
 	ra(a, 1);
 }
 
-static void 	reorder_b(t_nlist *a, t_nlist *b, int *sorted_data, int cut_pos)
+static void		reorder_b(t_nlist *a, t_nlist *b, int *sorted_data, int cut_pos)
 {
 	if (dist_end(b->start) <= 1)
 		return ;
@@ -58,12 +73,13 @@ static void 	reorder_b(t_nlist *a, t_nlist *b, int *sorted_data, int cut_pos)
 	if (b->start->data > b->start->next->data && dist_end(a->start) > 1)
 	{
 		if (contain_value(a->start->data, sorted_data, cut_pos) &&
-			contain_value(a->start->data, sorted_data, cut_pos) && a->start->next->data > a->start->data)
+			contain_value(a->start->data, sorted_data, cut_pos) &&
+			a->start->next->data > a->start->data)
 			ss(a, b, 1);
 	}
 }
 
-void	merge_swap(t_nlist *a, t_nlist *b, int pos)
+void			merge_swap(t_nlist *a, t_nlist *b, int pos)
 {
 	int			cut_pos;
 	int			*sorted_data;
@@ -77,7 +93,8 @@ void	merge_swap(t_nlist *a, t_nlist *b, int pos)
 	while (i)
 	{
 		if (contain_value(a->start->data, sorted_data, cut_pos) &&
-			contain_value(a->start->next->data, sorted_data, cut_pos) && a->start->next->data > a->start->data)
+			contain_value(a->start->next->data, sorted_data, cut_pos) &&
+			a->start->next->data > a->start->data)
 			sa(a, 1);
 		if (contain_value(a->start->data, sorted_data, cut_pos))
 		{

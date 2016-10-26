@@ -6,7 +6,7 @@
 /*   By: tguillem <tguillem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/11 14:01:50 by tguillem          #+#    #+#             */
-/*   Updated: 2016/10/23 13:26:45 by tguillem         ###   ########.fr       */
+/*   Updated: 2016/10/26 15:05:06 by tguillem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void			resolve_pushswap(t_nlist *a, t_nlist *b)
 {
-
 	if (is_already_sorted(a))
 		return ;
 	if (dist_end(a->start) >= 40)

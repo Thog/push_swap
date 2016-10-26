@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   algorithm_utils.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tguillem <tguillem@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/10/26 15:03:32 by tguillem          #+#    #+#             */
+/*   Updated: 2016/10/26 15:03:54 by tguillem         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 int		need_reverse_rotation(t_nlist *b)
@@ -28,7 +40,7 @@ int		need_reverse_rotation(t_nlist *b)
 		return (0);
 }
 
-void 	rotation_chooser(t_nlist *a, t_nlist *b, int min)
+void	rotation_chooser(t_nlist *a, t_nlist *b, int min)
 {
 	t_node		*smallest;
 

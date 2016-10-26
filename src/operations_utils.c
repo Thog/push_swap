@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   operations_utils.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tguillem <tguillem@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/10/26 14:54:45 by tguillem          #+#    #+#             */
+/*   Updated: 2016/10/26 15:04:41 by tguillem         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 int		get_biggest_entry(t_node *node, int *array, int len, int pos)
@@ -7,14 +19,15 @@ int		get_biggest_entry(t_node *node, int *array, int len, int pos)
 	max = INT_MAX;
 	while (node)
 	{
-		if (node->data < max && pos < node->data && !contain_value(node->data, array, len))
+		if (node->data < max && pos < node->data && !contain_value(node->data,
+			array, len))
 			max = node->data;
 		node = node->next;
 	}
 	return (max);
 }
 
-int			is_smallest(t_node *src, t_node *cmp)
+int		is_smallest(t_node *src, t_node *cmp)
 {
 	src = get_limits(src, 0);
 	if (src && cmp && src->data > cmp->data)
