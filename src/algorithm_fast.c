@@ -23,7 +23,7 @@ void	fast_swap(t_nlist *a, t_nlist *b)
 {
 	t_node		*max;
 
-	max = get_max(a->start);
+	max = get_limits(a->start, 1);
 	while (a->start && a->start->next)
 	{
 		if (dist_end(b->start) > 1 && a->start->data > a->start->next->data && b->start->data < b->start->next->data)

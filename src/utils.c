@@ -25,14 +25,14 @@ int			dist_end(t_node *node)
 	return (len);
 }
 
-t_node		*get_max(t_node *node)
+t_node		*get_limits(t_node *node, int max)
 {
 	t_node	*res;
 
 	res = node;
 	while (node)
 	{
-		if (res->data < node->data)
+		if ((max && res->data < node->data) || (!max && res->data > node->data))
 			res = node;
 		node = node->next;
 	}
@@ -43,7 +43,7 @@ int			d_node(t_node *node)
 {
 	t_node		*tmp;
 
-	tmp = get_max(node);
+	tmp = get_limits(node, 1);
 	if (tmp)
 		return (tmp->data);
 	else

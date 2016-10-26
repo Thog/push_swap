@@ -18,13 +18,9 @@ void			resolve_pushswap(t_nlist *a, t_nlist *b)
 	if (is_already_sorted(a))
 		return ;
 	if (dist_end(a->start) >= 40)
-	{
-		// MERGE
-		//merge_swap(a, b);
-	}
+		merge_swap(a, b, INT_MIN);
 	else
 	{
-		// FAST
 		while (!is_already_sorted(a) && !b->start)
 			fast_swap(a, b);
 	}

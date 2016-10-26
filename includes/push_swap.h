@@ -16,6 +16,7 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include "libft.h"
+# include <limits.h>
 
 typedef struct		s_node
 {
@@ -55,10 +56,16 @@ int					fill_stack(t_nlist *a, int ac, char **av, char ***split);
 int					check_args_before_split(char *name);
 void				destroy_args(char ***args);
 int					dist_end(t_node *node);
-t_node				*get_max(t_node *node);
+t_node				*get_limits(t_node *node, int max);
 int					dist_end(t_node *node);
 int					d_node(t_node *node);
 void				fast_swap(t_nlist *a, t_nlist *b);
-void				merge_swap(t_nlist *a, t_nlist *b);
-
+void				merge_swap(t_nlist *a, t_nlist *b, int min);
+int					contain_value(int nb, int *array, int len);
+void 				rotation_chooser(t_nlist *a, t_nlist *b, int min);
+int					is_bigger(t_node *node, int n, int min);
+void				rotation_selector(t_nlist *b);
+int					is_smallest(t_node *src, t_node *cmp);
+void				order_stacks(t_nlist *a, t_nlist *b, int min);
+int					get_biggest_entry(t_node *node, int *array, int len, int pos);
 #endif
