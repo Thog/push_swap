@@ -73,7 +73,7 @@ static void		reorder_b(t_nlist *a, t_nlist *b, int *sorted_data, int cut_pos)
 	if (b->start->data > b->start->next->data && dist_end(a->start) > 1)
 	{
 		if (contain_value(a->start->data, sorted_data, cut_pos) &&
-			contain_value(a->start->data, sorted_data, cut_pos) &&
+			contain_value(a->start->next->data, sorted_data, cut_pos) &&
 			a->start->next->data > a->start->data)
 			ss(a, b, 1);
 	}
