@@ -57,7 +57,6 @@ int					check_args_before_split(char *name);
 void				destroy_args(char ***args);
 int					dist_end(t_node *node);
 t_node				*get_limits(t_node *node, int max);
-int					dist_end(t_node *node);
 int					d_node(t_node *node);
 void				fast_swap(t_nlist *a, t_nlist *b);
 void				merge_swap(t_nlist *a, t_nlist *b, int min);
@@ -69,4 +68,5 @@ int					is_smallest(t_node *src, t_node *cmp);
 void				order_stacks(t_nlist *a, t_nlist *b, int min);
 int					get_biggest_entry(t_node *node, int *array, int len,
 	int pos);
+void				show_stacks(t_nlist *a, t_nlist *b);
 #endif
