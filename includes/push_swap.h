@@ -60,7 +60,7 @@ t_node				*get_limits(t_node *node, int max);
 int					dist_end(t_node *node);
 int					d_node(t_node *node);
 void				fast_swap(t_nlist *a, t_nlist *b);
-void				merge_swap(t_nlist *a, t_nlist *b, int min);
+void				merge_swap(t_nlist *a, t_nlist *b, int pos, int min);
 int					contain_value(int nb, int *array, int len);
 void				rotation_chooser(t_nlist *a, t_nlist *b, int min);
 int					is_bigger(t_node *node, int n, int min);

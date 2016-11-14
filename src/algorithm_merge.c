@@ -79,7 +79,7 @@ static void		reorder_b(t_nlist *a, t_nlist *b, int *sorted_data, int cut_pos)
 	}
 }
 
-void			merge_swap(t_nlist *a, t_nlist *b, int pos)
+void			merge_swap(t_nlist *a, t_nlist *b, int pos, int old_min)
 {
 	int			cut_pos;
 	int			*sorted_data;
@@ -88,7 +88,7 @@ void			merge_swap(t_nlist *a, t_nlist *b, int pos)
 
 	cut_pos = dist_end(a->start) / 2;
 	sorted_data = get_raw_sorted_stack(a->start, cut_pos, pos);
-	min = pos == INT_MIN ? sorted_data[0] : pos;
+	min = pos == INT_MIN ? sorted_data[0] : old_min;
 	i = cut_pos;
 	while (i)
 	{
@@ -107,7 +107,7 @@ void			merge_swap(t_nlist *a, t_nlist *b, int pos)
 	}
 	order_and_push_to_a(a, b, min);
 	if (pos == INT_MIN)
-		merge_swap(a, b, sorted_data[cut_pos - 1]);
+		merge_swap(a, b, sorted_data[cut_pos - 1], min);
 	ft_memdel((void**)&sorted_data);
 	final_sorting(a);
 }
