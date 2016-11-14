@@ -28,10 +28,10 @@ static int		*get_raw_sorted_stack(t_node *node, int len, int pos)
 	return (array);
 }
 
-static void		final_sorting(t_nlist *a, t_nlist *b)
+static void		final_sorting(t_nlist *a)
 {
-	while (!is_already_sorted(a) && !b->start)
-		fast_swap(a, b);
+	while (a->start->data > a->end->data)
+		ra(a, 1);
 }
 
 static void		order_and_push_to_a(t_nlist *a, t_nlist *b, int min)
@@ -55,7 +55,7 @@ static void		order_and_push_to_a(t_nlist *a, t_nlist *b, int min)
 			else
 				sa(a, 1);
 		}
-		while (dist_end(b->start) > 1 && is_smallest(b->start, a->start) && !is_already_sorted(a))
+		while (is_smallest(b->start, a->start) && !is_already_sorted(a))
 			order_stacks(a, b, min);
 	}
 	pa(a, b, 1);
@@ -109,5 +109,5 @@ void			merge_swap(t_nlist *a, t_nlist *b, int pos)
 	if (pos == INT_MIN)
 		merge_swap(a, b, sorted_data[cut_pos - 1]);
 	ft_memdel((void**)&sorted_data);
-	final_sorting(a, b);
+	final_sorting(a);
 }

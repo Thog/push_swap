@@ -6,11 +6,11 @@
 #    By: tguillem <tguillem@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/02 17:03:41 by tguillem          #+#    #+#              #
-#    Updated: 2016/11/10 15:37:35 by tguillem         ###   ########.fr        #
+#    Updated: 2016/09/29 11:32:25 by tguillem         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-CFLAGS = -O0 -g -Wall -Wextra -Werror -march=native -I./includes
+CFLAGS = -g -Wall -Wextra -Werror -march=native -I./includes
 PRGFLAGS = -lft
 CC = gcc
 
@@ -28,6 +28,7 @@ COMMON_OBJ = $(addprefix $(OUTDIR)/, $(SRC:.c=.o))
 PUSH_SWAP_OBJ = $(COMMON_OBJ) $(OUTDIR)/$(NAME).o
 CHECKER_OBJ = $(COMMON_OBJ) $(OUTDIR)/$(PRG1).o
 OBJ = $(PUSH_SWAP_OBJ) $(OUTDIR)/$(PRG1).o
+
 
 all: $(NAME) $(PRG1)
 

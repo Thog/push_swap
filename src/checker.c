@@ -12,6 +12,28 @@
 
 #include "push_swap.h"
 
+void			show_stacks(t_nlist *a, t_nlist *b)
+{
+	t_node	*node;
+
+	node = a->start;
+	ft_printf_fd(2, "a (%p / %p): %s", node, a->end, node ? "" : "Empty");
+	while (node)
+	{
+		ft_printf_fd(2, "%i ", node->data);
+		node = node->next;
+	}
+	ft_putstr_fd("\n", 2);
+	node = b->start;
+	ft_printf_fd(2, "b (%p / %p): %s", node, b->end, node ? "" : "Empty");
+	while (node)
+	{
+		ft_printf_fd(2, "%i ", node->data);
+		node = node->next;
+	}
+	ft_putstr_fd("\n", 2);
+}
+
 static int		is_valid_op(char *buffer)
 {
 	return (!ft_strcmp("sa", buffer) || !ft_strcmp("sb", buffer) ||
@@ -73,7 +95,6 @@ void			apply_checker(t_nlist *a, t_nlist *b)
 	while (index && apply_operation(a, b, index->data))
 		index = index->next;
 	destroy_array(operations);
-	show_stacks(a, b);
 	ft_printf("%s\n", (is_already_sorted(a) && !b->start) ? "OK" : "KO");
 }
 
