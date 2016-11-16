@@ -65,7 +65,7 @@ int		contain_value(int data, int *array, int len)
 	return (0);
 }
 
-int		is_bigger(t_node *node, int n, int min)
+int		is_big(t_node *node, int n, int min)
 {
 	if (node->data == min || node->next->data == min)
 		return (0);

@@ -28,8 +28,9 @@ static int		*get_raw_sorted_stack(t_node *node, int len, int pos)
 	return (array);
 }
 
-static void		final_sorting(t_nlist *a)
+static void		final_sorting_and_cleanup(t_nlist *a, int *sorted_data)
 {
+	ft_memdel((void**)&sorted_data);
 	while (a->start->data > a->end->data)
 		ra(a, 1);
 }
@@ -43,8 +44,7 @@ static void		order_and_push_to_a(t_nlist *a, t_nlist *b, int min)
 		if (dist_end(b->start) > 2 && b->start->data > b->start->next->data &&
 				b->start->data > b->start->next->next->data)
 			rotation_chooser(a, b, min);
-		while (dist_end(a->start) > 1 && is_bigger(a->start, b->start->data,
-				min))
+		while (dist_end(a->start) > 1 && is_big(a->start, b->start->data, min))
 			rotation_selector(b);
 		pa(a, b, 1);
 		if (a->start->data > a->start->next->data &&
@@ -96,11 +96,8 @@ void			merge_swap(t_nlist *a, t_nlist *b, int pos, int old_min)
 			contain_value(a->start->next->data, sorted_data, cut_pos) &&
 			a->start->next->data > a->start->data)
 			sa(a, 1);
-		if (contain_value(a->start->data, sorted_data, cut_pos))
-		{
+		if (contain_value(a->start->data, sorted_data, cut_pos) && (--i || 1))
 			pb(a, b, 1);
-			i--;
-		}
 		else
 			ra(a, 1);
 		reorder_b(a, b, sorted_data, cut_pos);
@@ -108,6 +105,5 @@ void			merge_swap(t_nlist *a, t_nlist *b, int pos, int old_min)
 	order_and_push_to_a(a, b, min);
 	if (pos == INT_MIN)
 		merge_swap(a, b, sorted_data[cut_pos - 1], min);
-	ft_memdel((void**)&sorted_data);
-	final_sorting(a);
+	final_sorting_and_cleanup(a, sorted_data);
 }
